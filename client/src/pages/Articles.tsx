@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 export default function Articles() {
   const [articles, setArticles] = useState<ArticleCardProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     // Load articles from posts-db.json
@@ -12,7 +14,18 @@ export default function Articles() {
         const response = await fetch("/posts-db.json");
         if (response.ok) {
           const data = await response.json();
-          setArticles(data.posts || []);
+          const loadedArticles = data.posts || [];
+          setArticles(loadedArticles);
+
+          // Extract unique categories
+          const uniqueCategories = Array.from(
+            new Set(
+              loadedArticles
+                .map((article: ArticleCardProps) => article.category)
+                .filter((cat: string | undefined) => cat)
+            )
+          ).sort() as string[];
+          setCategories(uniqueCategories);
         }
       } catch (error) {
         console.error("Failed to load articles:", error);
@@ -23,6 +36,12 @@ export default function Articles() {
 
     loadArticles();
   }, []);
+
+  // Filter articles by selected category
+  const filteredArticles =
+    selectedCategory === "all"
+      ? articles
+      : articles.filter((article) => article.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-white">
@@ -43,6 +62,45 @@ export default function Articles() {
         <div className="divider" />
       </div>
 
+      {/* Category Filter */}
+      {categories.length > 0 && (
+        <section className="container py-8">
+          <div className="flex flex-wrap gap-3 items-center">
+            <span className="text-sm font-medium text-gray-600 uppercase tracking-widest">
+              Filter by Country:
+            </span>
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                selectedCategory === "all"
+                  ? "bg-gray-900 text-white"
+                  : "border border-gray-300 text-gray-700 hover:border-gray-900 hover:text-gray-900"
+              }`}
+            >
+              All Countries
+            </button>
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                  selectedCategory === category
+                    ? "bg-gray-900 text-white"
+                    : "border border-gray-300 text-gray-700 hover:border-gray-900 hover:text-gray-900"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Divider */}
+      <div className="container">
+        <div className="divider" />
+      </div>
+
       {/* Articles Grid */}
       <section className="container py-12 md:py-16">
         {isLoading ? (
@@ -52,16 +110,27 @@ export default function Articles() {
               <p className="mt-4 text-gray-600">Loading articles...</p>
             </div>
           </div>
-        ) : articles.length === 0 ? (
+        ) : filteredArticles.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-lg text-gray-600">No articles yet. Check back soon!</p>
+            <p className="text-lg text-gray-600">
+              {selectedCategory === "all"
+                ? "No articles yet. Check back soon!"
+                : `No articles found for ${selectedCategory}. Try another country!`}
+            </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} {...article} />
-            ))}
-          </div>
+          <>
+            <div className="mb-4 text-sm text-gray-600">
+              Showing {filteredArticles.length} article
+              {filteredArticles.length !== 1 ? "s" : ""}{" "}
+              {selectedCategory !== "all" && `from ${selectedCategory}`}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {filteredArticles.map((article) => (
+                <ArticleCard key={article.id} {...article} />
+              ))}
+            </div>
+          </>
         )}
       </section>
     </div>

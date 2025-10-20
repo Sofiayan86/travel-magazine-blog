@@ -248,12 +248,73 @@
           </div>
 
           <div class="form-group">
-            <label for="articleCategory">Category</label>
-            <input 
-              type="text" 
-              id="articleCategory" 
-              placeholder="e.g., Japan, Switzerland, Spain"
-            >
+            <label for="articleCategory">Country *</label>
+            <select id="articleCategory" required>
+              <option value="">-- Select a country --</option>
+              <option value="Japan">Japan</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Spain">Spain</option>
+              <option value="France">France</option>
+              <option value="Italy">Italy</option>
+              <option value="Germany">Germany</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Austria">Austria</option>
+              <option value="Czech Republic">Czech Republic</option>
+              <option value="Poland">Poland</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Romania">Romania</option>
+              <option value="Greece">Greece</option>
+              <option value="Portugal">Portugal</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Iceland">Iceland</option>
+              <option value="Norway">Norway</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Finland">Finland</option>
+              <option value="Russia">Russia</option>
+              <option value="Turkey">Turkey</option>
+              <option value="United States">United States</option>
+              <option value="Canada">Canada</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Chile">Chile</option>
+              <option value="Peru">Peru</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Bolivia">Bolivia</option>
+              <option value="Australia">Australia</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Laos">Laos</option>
+              <option value="Myanmar">Myanmar</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Philippines">Philippines</option>
+              <option value="South Korea">South Korea</option>
+              <option value="China">China</option>
+              <option value="Taiwan">Taiwan</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="India">India</option>
+              <option value="Nepal">Nepal</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Egypt">Egypt</option>
+              <option value="Morocco">Morocco</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Kenya">Kenya</option>
+              <option value="Tanzania">Tanzania</option>
+              <option value="Uganda">Uganda</option>
+              <option value="Ethiopia">Ethiopia</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="help-text">Select the country where this article is about</p>
           </div>
         </div>
 
@@ -417,7 +478,7 @@
           excerpt: document.getElementById('articleExcerpt').value.trim(),
           content: document.getElementById('articleContent').value.trim(),
           author: document.getElementById('articleAuthor').value.trim() || 'Travel Blogger',
-          category: document.getElementById('articleCategory').value.trim() || 'Travel',
+          category: document.getElementById('articleCategory').value.trim(),
           publishDate: document.getElementById('publishDate').value,
           coverImage: document.getElementById('coverImage').value.trim() || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=600&fit=crop',
           gpxFile: document.getElementById('gpxFile').value.trim() || null,

@@ -4,6 +4,7 @@
       "id": "sample-1",
       "title": "Discovering the Hidden Temples of Kyoto",
       "excerpt": "A journey through Japan's ancient capital, exploring serene temples and traditional gardens hidden away from the bustling streets.",
+      "content": "This is a sample article. In the full implementation, article content would be loaded from your posts database and rendered here with support for images, text formatting, and more.",
       "coverImage": "https://images.unsplash.com/photo-1522383150241-803bdf59d3c8?w=1200&h=600&fit=crop",
       "publishDate": "2024-10-15",
       "author": "Travel Blogger",
@@ -11,7 +12,8 @@
       "location": {
         "lat": 35.0116,
         "lng": 135.7681
-      }
+      },
+      "gpxFile": "/gpx/sample-hike.gpx"
     },
     {
       "id": "sample-2",

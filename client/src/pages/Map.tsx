@@ -1,3 +1,4 @@
+import LeafletMap from "@/components/LeafletMap";
 import { useEffect, useState } from "react";
 
 interface ArticleLocation {
@@ -7,6 +8,7 @@ interface ArticleLocation {
   lat: number;
   lng: number;
   coverImage: string;
+  excerpt?: string;
 }
 
 export default function Map() {
@@ -29,6 +31,7 @@ export default function Map() {
               lat: post.location.lat,
               lng: post.location.lng,
               coverImage: post.coverImage,
+              excerpt: post.excerpt,
             }));
           setLocations(locationsData);
         }
@@ -41,6 +44,11 @@ export default function Map() {
 
     loadLocations();
   }, []);
+
+  const handleMarkerClick = (id: string) => {
+    const location = locations.find((l) => l.id === id);
+    if (location) setSelectedLocation(location);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -64,40 +72,24 @@ export default function Map() {
       {/* Map Container */}
       <section className="container py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Map Placeholder */}
+          {/* Map */}
           <div className="lg:col-span-3">
-            <div className="bg-gray-100 rounded h-96 md:h-[600px] flex items-center justify-center border border-gray-200 relative overflow-hidden">
-              {/* Leaflet Map will be rendered here */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-gray-100" />
-              
-              {/* Simple marker visualization */}
-              {locations.length > 0 && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center z-10">
-                    <p className="text-gray-600 font-medium mb-2">
-                      {locations.length} Destinations
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Interactive Leaflet.js map will be integrated here
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Marker dots for visualization */}
-              {locations.map((location, index) => (
-                <button
-                  key={location.id}
-                  onClick={() => setSelectedLocation(location)}
-                  className="absolute w-8 h-8 bg-gray-900 rounded-full hover:bg-gray-700 transition-colors z-20 transform -translate-x-1/2 -translate-y-1/2"
-                  style={{
-                    left: `${20 + (index % 3) * 30}%`,
-                    top: `${30 + Math.floor(index / 3) * 30}%`,
-                  }}
-                  title={location.title}
-                />
-              ))}
-            </div>
+            {isLoading ? (
+              <div className="bg-gray-100 rounded h-96 md:h-[600px] flex items-center justify-center border border-gray-200">
+                <p className="text-gray-600">Loading map...</p>
+              </div>
+            ) : locations.length === 0 ? (
+              <div className="bg-gray-100 rounded h-96 md:h-[600px] flex items-center justify-center border border-gray-200">
+                <p className="text-gray-600">No destinations to display</p>
+              </div>
+            ) : (
+              <LeafletMap
+                locations={locations}
+                height="600px"
+                draggable={true}
+                onMarkerClick={handleMarkerClick}
+              />
+            )}
           </div>
 
           {/* Sidebar - Locations List */}
@@ -127,7 +119,7 @@ export default function Map() {
                           : "bg-white hover:bg-gray-100"
                       }`}
                     >
-                      <p className="font-medium text-sm">{location.title}</p>
+                      <p className="font-medium text-sm line-clamp-2">{location.title}</p>
                       <p className="text-xs opacity-70 mt-1">{location.category}</p>
                     </button>
                   ))}
@@ -158,7 +150,10 @@ export default function Map() {
                 <h3 className="text-3xl font-serif font-bold text-gray-900 mb-4">
                   {selectedLocation.title}
                 </h3>
-                <p className="text-gray-600 mb-4">
+                {selectedLocation.excerpt && (
+                  <p className="text-gray-600 mb-4">{selectedLocation.excerpt}</p>
+                )}
+                <p className="text-sm text-gray-500 mb-4">
                   Latitude: {selectedLocation.lat.toFixed(4)}
                   <br />
                   Longitude: {selectedLocation.lng.toFixed(4)}
@@ -187,9 +182,8 @@ export default function Map() {
               Each marker represents a unique journey and story.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              In the full implementation, this map will be powered by Leaflet.js with support for 
-              zooming, panning, and detailed location information. GPX tracks will also be available 
-              for hiking and outdoor adventures.
+              The map is powered by Leaflet.js with support for zooming, panning, and detailed location 
+              information. Click on any marker to view the article and learn more about that destination.
             </p>
           </div>
         </div>

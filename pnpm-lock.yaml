@@ -121,6 +121,12 @@ importers:
       input-otp:
         specifier: ^1.4.2
         version: 1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      leaflet:
+        specifier: ^1.9.4
+        version: 1.9.4
+      leaflet-gpx:
+        specifier: ^2.2.0
+        version: 2.2.0
       lucide-react:
         specifier: ^0.453.0
         version: 0.453.0(react@18.3.1)
@@ -179,6 +185,9 @@ importers:
       '@types/express':
         specifier: 4.17.21
         version: 4.17.21
+      '@types/leaflet':
+        specifier: ^1.9.21
+        version: 1.9.21
       '@types/node':
         specifier: ^24.7.0
         version: 24.7.0
@@ -1552,8 +1561,14 @@ packages:
   '@types/express@4.17.21':
     resolution: {integrity: sha512-ejlPM315qwLpaQlQDTjPdsUFSc6ZsP4AN6AlWnogPjQ7CVi7PYF3YVz+CY3jE2pwYf7E/7HlDAN0rV2GxTG0HQ==}
 
+  '@types/geojson@7946.0.16':
+    resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
+
   '@types/http-errors@2.0.5':
     resolution: {integrity: sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==}
+
+  '@types/leaflet@1.9.21':
+    resolution: {integrity: sha512-TbAd9DaPGSnzp6QvtYngntMZgcRk+igFELwR2N99XZn7RXUdKgsXMR+28bUO0rPsWp8MIu/f47luLIQuSLYv/w==}
 
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
@@ -2070,6 +2085,12 @@ packages:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
     hasBin: true
+
+  leaflet-gpx@2.2.0:
+    resolution: {integrity: sha512-iVUx6o0ydLn2ikYSVLuWnr0k/CDAOIUtmvQ91AI24/PXuIFIb+iEIJMHTQfvGhMCKcFrwd9ZaFYH7P/46tgGhw==}
+
+  leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
 
   lightningcss-darwin-arm64@1.30.1:
     resolution: {integrity: sha512-c8JK7hyE65X1MHMN+Viq9n11RRC7hgin3HhYKhrMyaXflk5GVplZ60IxyoVtzILeKr+xAJwg6zK6sjTBJ0FKYQ==}
@@ -3934,7 +3955,13 @@ snapshots:
       '@types/qs': 6.14.0
       '@types/serve-static': 1.15.9
 
+  '@types/geojson@7946.0.16': {}
+
   '@types/http-errors@2.0.5': {}
+
+  '@types/leaflet@1.9.21':
+    dependencies:
+      '@types/geojson': 7946.0.16
 
   '@types/mime@1.3.5': {}
 
@@ -4493,6 +4520,10 @@ snapshots:
   jsesc@3.1.0: {}
 
   json5@2.2.3: {}
+
+  leaflet-gpx@2.2.0: {}
+
+  leaflet@1.9.4: {}
 
   lightningcss-darwin-arm64@1.30.1:
     optional: true

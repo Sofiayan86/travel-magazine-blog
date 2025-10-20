@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRoute } from "wouter";
 import { ChevronLeft } from "lucide-react";
 import { Link } from "wouter";
+import GPXMap from "@/components/GPXMap";
 
 interface ArticleData {
   id: string;
@@ -175,19 +176,14 @@ export default function Article() {
         </div>
       </div>
 
-      {/* GPX Map Placeholder */}
+      {/* GPX Map */}
       {article.gpxFile && (
         <div className="container py-12 md:py-16">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6">
               Journey Map
             </h2>
-            <div className="bg-gray-100 rounded h-96 flex items-center justify-center border border-gray-200">
-              <div className="text-center">
-                <p className="text-gray-600">GPX Map will be rendered here</p>
-                <p className="text-sm text-gray-500 mt-2">File: {article.gpxFile}</p>
-              </div>
-            </div>
+            <GPXMap gpxFile={article.gpxFile} height="400px" />
           </div>
         </div>
       )}

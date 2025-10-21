@@ -29,7 +29,6 @@
       padding: 20px 0;
       border-bottom: 1px solid #ddd;
       margin-bottom: 30px;
-      position: relative;
     }
 
     h1 {
@@ -76,7 +75,6 @@
     input[type="text"],
     input[type="date"],
     input[type="number"],
-    input[type="password"],
     textarea,
     select {
       width: 100%;
@@ -91,7 +89,6 @@
     input[type="text"]:focus,
     input[type="date"]:focus,
     input[type="number"]:focus,
-    input[type="password"]:focus,
     textarea:focus,
     select:focus {
       outline: none;
@@ -209,6 +206,12 @@
       border-color: #999;
     }
 
+    .editor-toolbar button.active {
+      background: #333;
+      color: white;
+      border-color: #333;
+    }
+
     #articleContent {
       border-radius: 0 0 4px 4px;
       border-top: none;
@@ -263,7 +266,6 @@
       display: block;
     }
 
-    /* Login Screen Styles */
     .login-screen {
       display: flex;
       align-items: center;
@@ -325,7 +327,6 @@
       margin-bottom: 15px;
     }
 
-    /* Password Settings */
     .password-settings {
       background: #f9f9f9;
       border: 1px solid #ddd;
@@ -364,14 +365,6 @@
       background: #5568d3;
     }
 
-    .password-settings button[style*="background: #999"] {
-      background: #999 !important;
-    }
-
-    .password-settings button[style*="background: #999"]:hover {
-      background: #777 !important;
-    }
-
     .logout-btn {
       position: absolute;
       top: 20px;
@@ -389,23 +382,13 @@
       background: #d32f2f;
     }
 
-    .password-message {
-      font-size: 12px;
-      padding: 8px;
-      margin-bottom: 10px;
-      border-radius: 4px;
-    }
-
-    .password-message.success {
+    .success-message {
       background: #e8f5e9;
       color: #2e7d32;
-      border: 1px solid #81c784;
-    }
-
-    .password-message.error {
-      background: #ffebee;
-      color: #c62828;
-      border: 1px solid #ef5350;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 12px;
     }
 
     .hidden {
@@ -423,12 +406,6 @@
 
       button {
         width: 100%;
-      }
-
-      .logout-btn {
-        position: static;
-        width: 100%;
-        margin-top: 10px;
       }
     }
   </style>
@@ -460,250 +437,227 @@
       </div>
     </header>
 
-    <div class="container">
-      <div class="admin-panel">
-        <div id="alerts"></div>
+  <div class="container">
+    <div class="admin-panel">
+      <div id="alerts"></div>
 
-        <div class="form-section">
-          <h2>GitHub Configuration</h2>
-
-          <div class="form-group">
-            <label for="githubToken">GitHub Personal Access Token</label>
-            <input 
-              type="password" 
-              id="githubToken" 
-              placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-            >
-            <p class="help-text">Create a token at <a href="https://github.com/settings/tokens" target="_blank" style="color: #667eea;">GitHub Settings</a> with 'repo' and 'workflow' permissions.</p>
-          </div>
-
-          <div class="form-group">
-            <label for="githubRepo">Repository (owner/repo)</label>
-            <input 
-              type="text" 
-              id="githubRepo" 
-              placeholder="username/travel-magazine-blog"
-            >
-            <p class="help-text">Format: GitHub username/repository name</p>
-          </div>
+      <div class="form-section">
+        <h2>GitHub Configuration</h2>
+        <div class="form-group">
+          <label for="githubToken">GitHub Personal Access Token</label>
+          <input 
+            type="password" 
+            id="githubToken" 
+            placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+          >
+          <p class="help-text">
+            Create a token at <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings</a> 
+            with 'repo' and 'workflow' permissions.
+          </p>
         </div>
 
-        <div class="form-section">
-          <h2>Article Information</h2>
+        <div class="form-group">
+          <label for="githubRepo">Repository (owner/repo)</label>
+          <input 
+            type="text" 
+            id="githubRepo" 
+            placeholder="username/travel-magazine-blog"
+          >
+          <p class="help-text">Format: GitHub username/repository name</p>
+        </div>
+      </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="articleTitle">Article Title *</label>
-              <input 
-                type="text" 
-                id="articleTitle" 
-                placeholder="e.g., Discovering Hidden Temples of Kyoto"
-                required
-              >
-            </div>
+      <div class="divider"></div>
 
-            <div class="form-group">
-              <label for="articleCategory">Country *</label>
-              <select id="articleCategory" required>
-                <option value="">-- Select a country --</option>
-                <option value="Japan">Japan</option>
-                <option value="Switzerland">Switzerland</option>
-                <option value="Spain">Spain</option>
-                <option value="France">France</option>
-                <option value="Italy">Italy</option>
-                <option value="Germany">Germany</option>
-                <option value="Netherlands">Netherlands</option>
-                <option value="Belgium">Belgium</option>
-                <option value="Austria">Austria</option>
-                <option value="Czech Republic">Czech Republic</option>
-                <option value="Poland">Poland</option>
-                <option value="Hungary">Hungary</option>
-                <option value="Romania">Romania</option>
-                <option value="Greece">Greece</option>
-                <option value="Portugal">Portugal</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Ireland">Ireland</option>
-                <option value="Iceland">Iceland</option>
-                <option value="Norway">Norway</option>
-                <option value="Sweden">Sweden</option>
-                <option value="Denmark">Denmark</option>
-                <option value="Finland">Finland</option>
-                <option value="Russia">Russia</option>
-                <option value="Turkey">Turkey</option>
-                <option value="United States">United States</option>
-                <option value="Canada">Canada</option>
-                <option value="Mexico">Mexico</option>
-                <option value="Brazil">Brazil</option>
-                <option value="Argentina">Argentina</option>
-                <option value="Chile">Chile</option>
-                <option value="Peru">Peru</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Ecuador">Ecuador</option>
-                <option value="Bolivia">Bolivia</option>
-                <option value="Australia">Australia</option>
-                <option value="New Zealand">New Zealand</option>
-                <option value="Thailand">Thailand</option>
-                <option value="Vietnam">Vietnam</option>
-                <option value="Cambodia">Cambodia</option>
-                <option value="Laos">Laos</option>
-                <option value="Myanmar">Myanmar</option>
-                <option value="Malaysia">Malaysia</option>
-                <option value="Singapore">Singapore</option>
-                <option value="Indonesia">Indonesia</option>
-                <option value="Philippines">Philippines</option>
-                <option value="South Korea">South Korea</option>
-                <option value="China">China</option>
-                <option value="Taiwan">Taiwan</option>
-                <option value="Hong Kong">Hong Kong</option>
-                <option value="India">India</option>
-                <option value="Nepal">Nepal</option>
-                <option value="Sri Lanka">Sri Lanka</option>
-                <option value="Pakistan">Pakistan</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Egypt">Egypt</option>
-                <option value="Morocco">Morocco</option>
-                <option value="South Africa">South Africa</option>
-                <option value="Kenya">Kenya</option>
-                <option value="Tanzania">Tanzania</option>
-                <option value="Uganda">Uganda</option>
-                <option value="Ethiopia">Ethiopia</option>
-                <option value="Other">Other</option>
-              </select>
-              <p class="help-text">Select the country where this article is about</p>
-            </div>
-          </div>
-
+      <div class="form-section">
+        <h2>Article Information</h2>
+        
+        <div class="form-row">
           <div class="form-group">
-            <label for="articleExcerpt">Excerpt *</label>
-            <textarea 
-              id="articleExcerpt" 
-              placeholder="A brief summary of the article..."
+            <label for="articleTitle">Article Title *</label>
+            <input 
+              type="text" 
+              id="articleTitle" 
+              placeholder="e.g., Discovering Hidden Temples of Kyoto"
               required
-            ></textarea>
+            >
           </div>
 
           <div class="form-group">
-            <label for="articleContent">Article Content *</label>
-            <div class="editor-toolbar">
-              <button type="button" onclick="formatText('bold')" title="Bold (Ctrl+B)">Bold</button>
-              <button type="button" onclick="formatText('italic')" title="Italic (Ctrl+I)">Italic</button>
-              <button type="button" onclick="openLinkDialog()" title="Add Link">Link</button>
-            </div>
-            <textarea 
-              id="articleContent" 
-              placeholder="Write your article content here..."
+            <label for="articleCategory">Country *</label>
+            <select id="articleCategory" required>
+              <option value="">-- Select a country --</option>
+              <option value="Japan">Japan</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Spain">Spain</option>
+              <option value="France">France</option>
+              <option value="Italy">Italy</option>
+              <option value="Germany">Germany</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Austria">Austria</option>
+              <option value="Czech Republic">Czech Republic</option>
+              <option value="Poland">Poland</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Romania">Romania</option>
+              <option value="Greece">Greece</option>
+              <option value="Portugal">Portugal</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Iceland">Iceland</option>
+              <option value="Norway">Norway</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Finland">Finland</option>
+              <option value="Russia">Russia</option>
+              <option value="Turkey">Turkey</option>
+              <option value="United States">United States</option>
+              <option value="Canada">Canada</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Chile">Chile</option>
+              <option value="Peru">Peru</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Bolivia">Bolivia</option>
+              <option value="Australia">Australia</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Laos">Laos</option>
+              <option value="Myanmar">Myanmar</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Philippines">Philippines</option>
+              <option value="South Korea">South Korea</option>
+              <option value="China">China</option>
+              <option value="Taiwan">Taiwan</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="India">India</option>
+              <option value="Nepal">Nepal</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Egypt">Egypt</option>
+              <option value="Morocco">Morocco</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Kenya">Kenya</option>
+              <option value="Tanzania">Tanzania</option>
+              <option value="Uganda">Uganda</option>
+              <option value="Ethiopia">Ethiopia</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="help-text">Select the country where this article is about</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="articleExcerpt">Excerpt *</label>
+          <textarea 
+            id="articleExcerpt" 
+            placeholder="A brief summary of the article..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="articleContent">Article Content *</label>
+          <div class="editor-toolbar">
+            <button type="button" onclick="formatText('bold')" title="Bold (Ctrl+B)">Bold</button>
+            <button type="button" onclick="formatText('italic')" title="Italic (Ctrl+I)">Italic</button>
+            <button type="button" onclick="openLinkDialog()" title="Add Link">Link</button>
+          </div>
+          <textarea 
+            id="articleContent" 
+            placeholder="Write your article content here..."
+            required
+          ></textarea>
+          <p class="help-text">Use the toolbar to format text. Content will be automatically converted to Markdown when published.</p>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="articleAuthor">Author</label>
+            <input 
+              type="text" 
+              id="articleAuthor" 
+              placeholder="Sofia Yan"
+              value="Sofia Yan"
+              readonly
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="publishDate">Publish Date *</label>
+            <input 
+              type="date" 
+              id="publishDate"
               required
-            ></textarea>
-            <p class="help-text">Use the toolbar to format text. Content will be automatically converted to Markdown when published.</p>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="articleAuthor">Author</label>
-              <input 
-                type="text" 
-                id="articleAuthor" 
-                placeholder="Sofia Yan"
-                value="Sofia Yan"
-                readonly
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="publishDate">Publish Date *</label>
-              <input 
-                type="date" 
-                id="publishDate"
-                required
-              >
-            </div>
+            >
           </div>
         </div>
+      </div>
 
-        <div class="form-section">
-          <h2>Location & Media</h2>
+      <div class="divider"></div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="latitude">Latitude</label>
-              <input 
-                type="number" 
-                id="latitude" 
-                placeholder="e.g., 35.0116"
-                step="0.0001"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="longitude">Longitude</label>
-              <input 
-                type="number" 
-                id="longitude" 
-                placeholder="e.g., 135.7681"
-                step="0.0001"
-              >
-            </div>
+      <div class="form-section">
+        <h2>Location & Media</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input 
+              type="number" 
+              id="latitude" 
+              placeholder="e.g., 35.0116"
+              step="0.0001"
+            >
           </div>
 
           <div class="form-group">
-            <label for="coverImage">Cover Image URL</label>
+            <label for="longitude">Longitude</label>
             <input 
-              type="text" 
-              id="coverImage" 
-              placeholder="https://example.com/image.jpg"
+              type="number" 
+              id="longitude" 
+              placeholder="e.g., 135.7681"
+              step="0.0001"
             >
-            <p class="help-text">Full URL to the cover image</p>
-          </div>
-
-          <div class="form-group">
-            <label for="gpxFile">GPX File Path (Optional)</label>
-            <input 
-              type="text" 
-              id="gpxFile" 
-              placeholder="/gpx/route-name.gpx"
-            >
-            <p class="help-text">Path to GPX file for route visualization</p>
           </div>
         </div>
 
-        <div class="divider"></div>
-
-        <!-- Password Management Section -->
-        <div class="form-section">
-          <h2>Security Settings</h2>
-          <div class="password-settings">
-            <h3>Change Admin Password</h3>
-            <input 
-              type="password" 
-              id="currentPassword" 
-              placeholder="Current password"
-            >
-            <input 
-              type="password" 
-              id="newPassword" 
-              placeholder="New password (min 6 characters)"
-            >
-            <input 
-              type="password" 
-              id="confirmPassword" 
-              placeholder="Confirm new password"
-            >
-            <div id="passwordMessage"></div>
-            <button onclick="changePassword()">Update Password</button>
-            <button onclick="resetPasswordForm()" style="background: #999;">Clear</button>
-          </div>
+        <div class="form-group">
+          <label for="coverImage">Cover Image URL</label>
+          <input 
+            type="text" 
+            id="coverImage" 
+            placeholder="https://example.com/image.jpg"
+          >
+          <p class="help-text">Full URL to the cover image</p>
         </div>
 
-        <div class="divider"></div>
-
-        <div class="button-group">
-          <button class="btn-primary" onclick="publishArticle()">
-            Publish Article
-          </button>
-          <button class="btn-secondary" onclick="resetForm()">
-            Clear Form
-          </button>
+        <div class="form-group">
+          <label for="gpxFile">GPX File Path (Optional)</label>
+          <input 
+            type="text" 
+            id="gpxFile" 
+            placeholder="/gpx/route-name.gpx"
+          >
+          <p class="help-text">Path to GPX file for route visualization</p>
         </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="button-group">
+        <button class="btn-primary" onclick="publishArticle()">
+          Publish Article
+        </button>
+        <button class="btn-secondary" onclick="resetForm()">
+          Clear Form
+        </button>
       </div>
     </div>
   </div>
@@ -724,126 +678,9 @@
   </div>
 
   <script>
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      checkLoginStatus();
-      document.getElementById('publishDate').valueAsDate = new Date();
-    });
+    // Set today's date as default
+    document.getElementById('publishDate').valueAsDate = new Date();
 
-    // ===== Authentication Functions =====
-    function checkLoginStatus() {
-      const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-      if (isLoggedIn) {
-        showAdminPanel();
-      } else {
-        showLoginScreen();
-      }
-    }
-
-    function login() {
-      const password = document.getElementById('loginPassword').value;
-      const storedPassword = localStorage.getItem('adminPassword');
-      
-      if (!storedPassword) {
-        // First time login - set password
-        if (password.length < 6) {
-          showLoginError('Password must be at least 6 characters');
-          return;
-        }
-        localStorage.setItem('adminPassword', btoa(password)); // Simple encoding
-        localStorage.setItem('adminLoggedIn', 'true');
-        showAdminPanel();
-      } else {
-        // Verify password
-        if (btoa(password) === storedPassword) {
-          localStorage.setItem('adminLoggedIn', 'true');
-          showAdminPanel();
-        } else {
-          showLoginError('Incorrect password');
-          document.getElementById('loginPassword').value = '';
-        }
-      }
-    }
-
-    function logout() {
-      localStorage.setItem('adminLoggedIn', 'false');
-      document.getElementById('loginPassword').value = '';
-      document.getElementById('loginError').textContent = '';
-      showLoginScreen();
-    }
-
-    function showLoginScreen() {
-      document.getElementById('loginScreen').style.display = 'flex';
-      document.getElementById('adminPanel').classList.add('hidden');
-      document.getElementById('loginPassword').focus();
-    }
-
-    function showAdminPanel() {
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('adminPanel').classList.remove('hidden');
-    }
-
-    function showLoginError(message) {
-      document.getElementById('loginError').textContent = message;
-    }
-
-    // ===== Password Management Functions =====
-    function changePassword() {
-      const currentPassword = document.getElementById('currentPassword').value;
-      const newPassword = document.getElementById('newPassword').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-      const messageDiv = document.getElementById('passwordMessage');
-
-      // Validate
-      if (!currentPassword || !newPassword || !confirmPassword) {
-        showPasswordMessage('Please fill in all fields', 'error');
-        return;
-      }
-
-      if (newPassword.length < 6) {
-        showPasswordMessage('New password must be at least 6 characters', 'error');
-        return;
-      }
-
-      if (newPassword !== confirmPassword) {
-        showPasswordMessage('New passwords do not match', 'error');
-        return;
-      }
-
-      // Verify current password
-      const storedPassword = localStorage.getItem('adminPassword');
-      if (btoa(currentPassword) !== storedPassword) {
-        showPasswordMessage('Current password is incorrect', 'error');
-        return;
-      }
-
-      // Update password
-      localStorage.setItem('adminPassword', btoa(newPassword));
-      showPasswordMessage('Password updated successfully!', 'success');
-      resetPasswordForm();
-    }
-
-    function resetPasswordForm() {
-      document.getElementById('currentPassword').value = '';
-      document.getElementById('newPassword').value = '';
-      document.getElementById('confirmPassword').value = '';
-      document.getElementById('passwordMessage').textContent = '';
-    }
-
-    function showPasswordMessage(message, type) {
-      const messageDiv = document.getElementById('passwordMessage');
-      messageDiv.textContent = message;
-      messageDiv.className = 'password-message ' + type;
-      
-      if (type === 'success') {
-        setTimeout(() => {
-          messageDiv.textContent = '';
-          messageDiv.className = '';
-        }, 3000);
-      }
-    }
-
-    // ===== Article Publishing Functions =====
     function showAlert(message, type = 'info') {
       const alertsDiv = document.getElementById('alerts');
       const alertEl = document.createElement('div');
@@ -860,10 +697,9 @@
       const title = document.getElementById('articleTitle').value.trim();
       const excerpt = document.getElementById('articleExcerpt').value.trim();
       const content = document.getElementById('articleContent').value.trim();
-      const category = document.getElementById('articleCategory').value.trim();
       const publishDate = document.getElementById('publishDate').value;
 
-      if (!title || !excerpt || !content || !category || !publishDate) {
+      if (!title || !excerpt || !content || !publishDate) {
         showAlert('Please fill in all required fields', 'error');
         return false;
       }
@@ -894,12 +730,13 @@
       }
 
       try {
+        // Collect form data
         const articleData = {
           id: Date.now().toString(),
           title: document.getElementById('articleTitle').value.trim(),
           excerpt: document.getElementById('articleExcerpt').value.trim(),
           content: document.getElementById('articleContent').value.trim(),
-          author: document.getElementById('articleAuthor').value.trim() || 'Sofia Yan',
+          author: document.getElementById('articleAuthor').value.trim() || 'Travel Blogger',
           category: document.getElementById('articleCategory').value.trim(),
           publishDate: document.getElementById('publishDate').value,
           coverImage: document.getElementById('coverImage').value.trim() || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=600&fit=crop',
@@ -907,6 +744,7 @@
           location: null
         };
 
+        // Add location if provided
         const lat = document.getElementById('latitude').value;
         const lng = document.getElementById('longitude').value;
         if (lat && lng) {
@@ -916,8 +754,10 @@
           };
         }
 
+        // Show processing message
         showAlert('Publishing article... This may take a moment.', 'info');
 
+        // Trigger GitHub Action via API
         const [owner, repoName] = repo.split('/');
         const response = await fetch(
           `https://api.github.com/repos/${owner}/${repoName}/actions/workflows/publish-article.yml/dispatches`,
@@ -951,7 +791,7 @@
       }
     }
 
-    // ===== Text Formatting Functions =====
+    // Text formatting functions
     function formatText(format) {
       const textarea = document.getElementById('articleContent');
       const start = textarea.selectionStart;
@@ -979,13 +819,16 @@
       const end = textarea.selectionEnd;
       const selectedText = textarea.value.substring(start, end);
 
+      // Store selection info for later use
       window.linkDialogData = { start, end, selectedText };
 
+      // Show dialog
       const dialog = document.getElementById('linkDialog');
       const overlay = document.getElementById('overlay');
       dialog.classList.add('active');
       overlay.classList.add('active');
 
+      // Clear and focus input
       document.getElementById('linkUrl').value = '';
       document.getElementById('linkUrl').focus();
     }
@@ -1019,27 +862,39 @@
     }
 
     // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
+    document.getElementById('articleContent').addEventListener('keydown', (e) => {
+      // Ctrl+B for bold
       if (e.ctrlKey && e.key === 'b') {
         e.preventDefault();
         formatText('bold');
       }
+      // Ctrl+I for italic
       if (e.ctrlKey && e.key === 'i') {
         e.preventDefault();
         formatText('italic');
       }
+      // Ctrl+Enter to submit
+      if (e.ctrlKey && e.key === 'Enter') {
+        publishArticle();
+      }
+    });
+
+    // Close link dialog on overlay click
+    document.getElementById('overlay').addEventListener('click', closeLinkDialog);
+
+    // Close link dialog on Escape key
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLinkDialog();
       }
     });
 
+    // Link dialog Enter key
     document.getElementById('linkUrl').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         insertLink();
       }
     });
-
-    document.getElementById('overlay').addEventListener('click', closeLinkDialog);
   </script>
 </body>
 </html>

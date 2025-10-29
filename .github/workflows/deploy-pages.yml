@@ -32,13 +32,6 @@ jobs:
       - name: Copy build to docs folder
         run: |
           rm -rf docs
-          cp -r dist/public docs
-
-      - name: Commit and push
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add docs/
-          git commit -m "Deploy to GitHub Pages" || true
-          git push
+          mkdir -p docs
+          cp -r dist/public/* docs/
 

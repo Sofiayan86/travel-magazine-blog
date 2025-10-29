@@ -30,8 +30,8 @@ export const articles = mysqlTable("articles", {
   author: varchar("author", { length: 100 }).default("Sofia Yan"),
   coverImageUrl: text("coverImageUrl"),
   coverImageKey: varchar("coverImageKey", { length: 255 }), // S3 key
-  latitude: decimal("latitude", { precision: 10, scale: 6 }),
-  longitude: decimal("longitude", { precision: 10, scale: 6 }),
+  latitude: varchar("latitude", { length: 20 }),
+  longitude: varchar("longitude", { length: 20 }),
   gpxFileUrl: text("gpxFileUrl"),
   gpxFileKey: varchar("gpxFileKey", { length: 255 }), // S3 key
   publishedAt: timestamp("publishedAt").defaultNow(),

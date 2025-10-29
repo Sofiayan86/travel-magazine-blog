@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { publicProcedure, protectedProcedure, router } from "../_core/trpc";
 import { createArticle, getAllArticles, getArticle, getArticlesByCategory, updateArticle, deleteArticle } from "../db";
+import { InsertArticle } from "../../drizzle/schema";
 
 export const articlesRouter = router({
   list: publicProcedure.query(async () => {
@@ -29,8 +30,8 @@ export const articlesRouter = router({
         author: z.string().optional(),
         coverImageUrl: z.string().optional(),
         coverImageKey: z.string().optional(),
-        latitude: z.number().optional(),
-        longitude: z.number().optional(),
+        latitude: z.string().optional(),
+        longitude: z.string().optional(),
         gpxFileUrl: z.string().optional(),
         gpxFileKey: z.string().optional(),
       })
@@ -58,8 +59,8 @@ export const articlesRouter = router({
         author: z.string().optional(),
         coverImageUrl: z.string().optional(),
         coverImageKey: z.string().optional(),
-        latitude: z.number().optional(),
-        longitude: z.number().optional(),
+        latitude: z.string().optional(),
+        longitude: z.string().optional(),
         gpxFileUrl: z.string().optional(),
         gpxFileKey: z.string().optional(),
       })
@@ -71,7 +72,13 @@ export const articlesRouter = router({
       }
 
       const { id, ...data } = input;
-      return updateArticle(id, data);
+      const updateData: Record<string, any> = {};
+      Object.entries(data).forEach(([key, value]) => {
+        if (value !== undefined) {
+          updateData[key] = value;
+        }
+      });
+      return updateArticle(id, updateData as Partial<InsertArticle>);
     }),
 
   delete: protectedProcedure

@@ -1,0 +1,38 @@
+.articles-page {
+  width: 100%;
+}
+
+.page-lead {
+  display: flex;
+  justify-content: center;
+  padding: 6rem 0 2.5rem;
+}
+
+.page-lead__content {
+  width: var(--content-width);
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-lead__content h1 {
+  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+}
+
+.articles-list {
+  width: var(--content-width);
+  margin: 0 auto;
+  padding: 2rem 0 5rem;
+}
+
+@media (max-width: 768px) {
+  .page-lead {
+    padding: 5rem 0 1.5rem;
+  }
+
+  .articles-list {
+    padding: 1rem 0 3rem;
+    width: 100%;
+  }
+}

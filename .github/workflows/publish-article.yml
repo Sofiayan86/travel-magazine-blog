@@ -35,21 +35,21 @@ jobs:
           ARTICLE_DATA='${{ steps.parse.outputs.article_data }}'
           
           # Read existing posts
-          if [ -f "client/public/posts-db.json" ]; then
-            EXISTING=$(cat client/public/posts-db.json)
+          if [ -f "posts-db.json" ]; then
+            EXISTING=$(cat posts-db.json)
           else
             EXISTING='{"posts":[]}'
           fi
-          
+
           # Add new article to the beginning of posts array
           UPDATED=$(echo "$EXISTING" | jq --argjson article "$ARTICLE_DATA" '.posts |= [$article] + .')
-          
+
           # Write back to file
-          echo "$UPDATED" > client/public/posts-db.json
-          
+          echo "$UPDATED" > posts-db.json
+
           # Pretty print for readability
-          jq '.' client/public/posts-db.json > client/public/posts-db.json.tmp
-          mv client/public/posts-db.json.tmp client/public/posts-db.json
+          jq '.' posts-db.json > posts-db.json.tmp
+          mv posts-db.json.tmp posts-db.json
 
       - name: Commit and push
         run: |
@@ -58,7 +58,7 @@ jobs:
           
           ARTICLE_TITLE='${{ steps.parse.outputs.article_title }}'
           
-          git add client/public/posts-db.json
+          git add posts-db.json
           git commit -m "feat: publish article - $ARTICLE_TITLE" || echo "No changes to commit"
           git push origin main || echo "Push failed, might be no changes"
 

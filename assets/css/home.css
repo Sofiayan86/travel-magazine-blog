@@ -107,6 +107,23 @@
 .hero .link-button:hover {
   background: rgba(255, 255, 255, 0.92);
   color: var(--color-text);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: stretch;
+  min-height: 70vh;
+  padding: 6rem 0 3rem;
+  background: linear-gradient(135deg, rgba(160, 196, 255, 0.35), transparent),
+    url('assets/images/hero-texture.svg') center/cover no-repeat;
+}
+
+.hero__content {
+  margin: 0 auto;
+  max-width: 540px;
+  padding: 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 .hero__title {
@@ -163,6 +180,11 @@
 @media (max-width: 768px) {
   .hero {
     padding: 4rem 0;
+    padding: 4rem 0 2rem;
+  }
+
+  .hero__content {
+    padding: 0 1.5rem;
   }
 
   .home-section {

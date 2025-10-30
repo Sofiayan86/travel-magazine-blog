@@ -100,3 +100,19 @@ function initHeroMap(posts = []) {
     map.invalidateSize();
   }, 200);
 }
+  if (!grid) return;
+
+  try {
+    const posts = await fetchPosts();
+    posts
+      .slice(0, 3)
+      .forEach((post, index) => {
+        const card = createPostCard(post);
+        card.style.animationDelay = `${index * 0.1}s`;
+        grid.appendChild(card);
+      });
+  } catch (error) {
+    grid.innerHTML = '<p>目前無法載入文章，請稍後再試。</p>';
+    console.error(error);
+  }
+});

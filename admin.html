@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>文章管理 — Interwoven Journeys Admin</title>
+    <meta name="description" content="透過 GitHub Actions 發佈新文章至 Interwoven Journeys。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <script type="module" src="assets/js/admin.js" defer></script>
+  </head>
+  <body class="admin-page">
+    <main>
+      <section class="admin-intro">
+        <h1>Interwoven Journeys — Admin</h1>
+        <p>
+          這個管理介面會透過 GitHub Personal Access Token 觸發 <code>publish-post.yml</code> workflow，將新文章加入
+          <code>posts-db.json</code> 並建立 <code>posts/slug.html</code> 檔案。
+        </p>
+      </section>
+
+      <form class="admin-form" data-admin-form>
+        <fieldset>
+          <legend>GitHub 存取設定</legend>
+          <label>
+            存放庫 (owner/repo)
+            <input type="text" name="repo" placeholder="username/travel-magazine-blog" required />
+          </label>
+          <label>
+            Workflow File Path
+            <input type="text" name="workflow" value=".github/workflows/publish-post.yml" required />
+          </label>
+          <label>
+            GitHub Personal Access Token
+            <input type="password" name="token" required />
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>文章資訊</legend>
+          <div class="form-grid">
+            <label>
+              標題
+              <input type="text" name="title" required />
+            </label>
+            <label>
+              Slug
+              <input type="text" name="slug" placeholder="taiwan-hike-01" pattern="[a-z0-9-]+" required />
+            </label>
+            <label>
+              發布日期
+              <input type="date" name="date" required />
+            </label>
+            <label>
+              封面圖路徑
+              <input type="text" name="coverImage" placeholder="assets/images/taiwan-hike-01.svg" required />
+            </label>
+            <label>
+              摘要
+              <textarea name="excerpt" rows="3" required></textarea>
+            </label>
+            <label>
+              GPX 檔案路徑 (可留空)
+              <input type="text" name="gpxFile" placeholder="gpx/taiwan-hike-01.gpx" />
+            </label>
+            <label>
+              地點緯度 (可留空)
+              <input type="number" name="lat" step="0.000001" />
+            </label>
+            <label>
+              地點經度 (可留空)
+              <input type="number" name="lng" step="0.000001" />
+            </label>
+          </div>
+          <label>
+            文章 HTML 內容
+            <textarea name="content" rows="12" placeholder="<section>...</section>" required></textarea>
+          </label>
+        </fieldset>
+
+        <button type="submit" class="link-button">提交發布工作流程</button>
+      </form>
+
+      <section class="admin-log" data-admin-log>
+        <h2>發佈狀態</h2>
+        <div class="log-output" data-log-output>
+          <p>提交後將在此顯示 GitHub API 回應。</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

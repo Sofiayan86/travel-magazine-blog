@@ -11,16 +11,40 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-o9N1j7kGStGkHn6ZT1JFDf2kxwLhZ9Fj1r3r3S3Xw84="
+      crossorigin=""
+    />
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <script type="module" src="assets/js/layout.js" defer></script>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-oY0pAETx0YdMjQ1R2GXwZ9gkC2Vqbodui6wZ8ZGT+Po="
+      crossorigin=""
+      defer
+    ></script>
     <script type="module" src="assets/js/home.js" defer></script>
   </head>
   <body>
     <header class="site-header" data-active="home"></header>
     <main>
       <section class="hero">
+        <div class="hero__map">
+          <div id="hero-map" class="hero__map-canvas"></div>
+        </div>
+        <div class="hero__content">
+          <div class="hero__content-inner">
+            <p class="eyebrow">Interwoven Journeys</p>
+            <h1 class="hero__title">把每一段旅程，織成專屬的雜誌篇章</h1>
+            <p class="hero__description">
+              透過文字、影像與軌跡，探索世界角落的風景與故事。這裡是一個無需演算法介入、完全自主掌握的旅人檔案。
+            </p>
+            <a class="link-button" href="articles.html">閱讀最新文章</a>
+          </div>
         <div class="hero__content">
           <p class="eyebrow">Interwoven Journeys</p>
           <h1 class="hero__title">把每一段旅程，織成專屬的雜誌篇章</h1>

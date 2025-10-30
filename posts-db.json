@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "slug": "alishan-forest-train",
+      "title": "阿里山森鐵的晨曦軌跡",
+      "excerpt": "搭乘阿里山森林鐵路追逐日出，沿著軌道感受海拔上升的節奏，最後在祝山迎接金色晨曦。",
+      "date": "2024-03-18",
+      "coverImage": "assets/images/alishan-forest-train.svg",
+      "gpxFile": "gpx/alishan-forest-trail.gpx",
+      "location": { "lat": 23.5163, "lng": 120.8028 }
+    },
+    {
+      "slug": "kyoto-tea-ceremony",
+      "title": "京都和菓子的午后茶席",
+      "excerpt": "在東山腳下的町家茶屋，跟著老師傅學習和菓子與抹茶的細緻節奏，品味慢下來的午後。",
+      "date": "2024-02-02",
+      "coverImage": "assets/images/kyoto-tea-ceremony.svg",
+      "location": { "lat": 35.0037, "lng": 135.7788 }
+    },
+    {
+      "slug": "lisbon-atlantic-light",
+      "title": "里斯本大西洋的午後光線",
+      "excerpt": "走過亞法瑪的石板路，讓大西洋的光影在觀景台間跳動，記錄葡萄牙的悠緩節奏。",
+      "date": "2023-11-22",
+      "coverImage": "assets/images/lisbon-atlantic-light.svg",
+      "location": { "lat": 38.7139, "lng": -9.1399 }
+    }
+  ]
+}

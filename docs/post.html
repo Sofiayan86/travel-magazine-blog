@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>文章 — Interwoven Journeys</title>
+    <meta name="description" content="閱讀旅行文章，搭配高品質影像與互動地圖。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-o9N1j7kGStGkHn6ZT1JFDf2kxwLhZ9Fj1r3r3S3Xw84="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/post.css" />
+    <script type="module" src="assets/js/layout.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-oY0pAETx0YdMjQ1R2GXwZ9gkC2Vqbodui6wZ8ZGT+Po=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js" integrity="sha512-08LomqKgJo0vvArkH5AO9M/dwZ0pniS3pSkeCZMt2rtI8BGG99nmCaTKty+O+kO5OVwOB1p5MNDoAuCEi0aYaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="assets/js/post.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header"></header>
+    <main class="post-page">
+      <article class="post" data-post>
+        <section class="post-hero" data-hero>
+          <div class="post-hero__image" data-hero-image></div>
+          <div class="post-hero__overlay">
+            <p class="post-hero__date" data-post-date></p>
+            <h1 class="post-hero__title" data-post-title></h1>
+          </div>
+        </section>
+        <section class="post-content" data-post-content></section>
+      </article>
+      <section class="post-map" data-post-map hidden>
+        <div class="section-header">
+          <h2>Route Map</h2>
+          <p>縮放或拖曳地圖，沿著 GPX 軌跡再次走一遍這段旅程。</p>
+        </div>
+        <div id="gpx-map" class="map"></div>
+        <dl class="gpx-stats" data-gpx-stats>
+          <div>
+            <dt>Distance</dt>
+            <dd data-distance>-</dd>
+          </div>
+          <div>
+            <dt>Elevation Gain</dt>
+            <dd data-gain>-</dd>
+          </div>
+          <div>
+            <dt>Elevation Loss</dt>
+            <dd data-loss>-</dd>
+          </div>
+          <div>
+            <dt>Max Elevation</dt>
+            <dd data-max>-</dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+    <footer class="site-footer"></footer>
+  </body>
+</html>

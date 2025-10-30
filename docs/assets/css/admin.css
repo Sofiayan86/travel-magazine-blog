@@ -1,0 +1,114 @@
+.admin-page {
+  background: #f0f2f5;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+.admin-page main {
+  width: min(960px, 90vw);
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.admin-intro h1 {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.admin-form {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: 0 30px 60px rgba(31, 31, 31, 0.08);
+}
+
+.admin-form fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-form legend {
+  font-family: var(--font-heading);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.admin-form input,
+.admin-form textarea {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  background: #fbfbfb;
+  transition: border var(--transition-base), box-shadow var(--transition-base);
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+  outline: none;
+  border-color: var(--color-text);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.admin-log {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 15px 40px rgba(31, 31, 31, 0.06);
+}
+
+.admin-log h2 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.log-output {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  background: #111;
+  color: #e8e8e8;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+  .admin-page main {
+    width: 100%;
+    margin: 3rem 0;
+    padding: 0 1.5rem;
+  }
+
+  .admin-form {
+    padding: 2rem 1.5rem;
+  }
+}

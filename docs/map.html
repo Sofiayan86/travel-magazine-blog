@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>探索地圖 — Interwoven Journeys</title>
+    <meta name="description" content="在全球互動地圖上探索所有旅行篇章。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-o9N1j7kGStGkHn6ZT1JFDf2kxwLhZ9Fj1r3r3S3Xw84="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/map-page.css" />
+    <script type="module" src="assets/js/layout.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-oY0pAETx0YdMjQ1R2GXwZ9gkC2Vqbodui6wZ8ZGT+Po=" crossorigin=""></script>
+    <script type="module" src="assets/js/map-page.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" data-active="map"></header>
+    <main class="map-page">
+      <section class="page-lead">
+        <div class="page-lead__content">
+          <p class="eyebrow">Explorer's Atlas</p>
+          <h1>世界地圖中的旅行故事</h1>
+          <p>透過互動地圖瀏覽所有旅程的地理位置，點擊標記即可閱讀文章。</p>
+        </div>
+      </section>
+      <section class="map-container">
+        <div id="global-map" class="map"></div>
+      </section>
+    </main>
+    <footer class="site-footer"></footer>
+  </body>
+</html>

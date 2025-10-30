@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interwoven Journeys — 旅行雜誌部落格</title>
+    <meta name="description" content="沉浸式旅行紀錄，結合文字、影像與地圖的互動式旅行雜誌。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <script type="module" src="assets/js/layout.js" defer></script>
+    <script type="module" src="assets/js/home.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" data-active="home"></header>
+    <main>
+      <section class="hero">
+        <div class="hero__content">
+          <p class="eyebrow">Interwoven Journeys</p>
+          <h1 class="hero__title">把每一段旅程，織成專屬的雜誌篇章</h1>
+          <p class="hero__description">
+            透過文字、影像與軌跡，探索世界角落的風景與故事。這裡是一個無需演算法介入、完全自主掌握的旅人檔案。
+          </p>
+          <a class="link-button" href="articles.html">閱讀最新文章</a>
+        </div>
+      </section>
+
+      <section class="home-section" id="latest-posts">
+        <div class="section-header">
+          <h2>Latest Dispatch</h2>
+          <a class="section-link" href="articles.html">全部文章</a>
+        </div>
+        <div class="post-grid" data-post-grid></div>
+      </section>
+
+      <section class="home-section home-section--map">
+        <div class="section-header">
+          <h2>Explorer's Atlas</h2>
+          <a class="section-link" href="map.html">開啟互動地圖</a>
+        </div>
+        <p class="section-description">
+          在互動地圖中，以地理視角瀏覽所有旅程，從山脈到海岸，找到下一趟引人入勝的目的地。
+        </p>
+        <div class="map-preview">
+          <img src="assets/images/map-preview.svg" alt="地圖預覽" />
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"></footer>
+  </body>
+</html>

@@ -17,28 +17,19 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm build
-
-      - name: Copy build to docs folder
+      - name: Prepare docs folder
         run: |
           rm -rf docs
           mkdir -p docs
-          cp -r dist/public/* docs/
+          cp index.html docs/
+          cp articles.html docs/
+          cp map.html docs/
+          cp admin.html docs/
+          cp post.html docs/
+          cp posts-db.json docs/
+          cp -r assets docs/
+          cp -r posts docs/
+          cp -r gpx docs/
 
       - name: Commit and push docs
         run: |

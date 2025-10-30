@@ -18,31 +18,29 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build project
-        run: pnpm build
+      - name: Prepare static site
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          cp index.html dist/
+          cp articles.html dist/
+          cp map.html dist/
+          cp admin.html dist/
+          cp post.html dist/
+          cp posts-db.json dist/
+          cp -r assets dist/
+          cp -r posts dist/
+          cp -r gpx dist/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: 'dist/public'
+          path: 'dist'
 
   deploy:
     environment:
